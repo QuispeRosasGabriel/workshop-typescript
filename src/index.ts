@@ -2,10 +2,21 @@
     ===== Código de TypeScript =====
 */
 
-
-function queTipoSoy<T>(argumento: T) {
-    return argumento;
+// los decoradores son funciones
+function classDecorator<T extends {new (...args: Array<any>): {}}>(constructor: T) {
+    return class extends constructor {
+        newProperty: 'new';
+        hello: 'override';
+    }
 }
 
-let soyString = queTipoSoy('Hola Mundo');
-let soyNumero = queTipoSoy(100);
+@classDecorator
+class miSuperClase {
+    public miPropiedad: string;
+
+    public imprimir() {
+        console.log('Hola');
+    }
+}
+
+console.log('decoradores', miSuperClase);
