@@ -1,28 +1,28 @@
 /*
     ===== Código de TypeScript =====
 */
-
-interface Reproductor {
-    volumen: number;
-    segundo: number;
-    cancion: string;
-    detalles: Detalles;
+ 
+interface Producto {
+    desc: string;
+    precio: number;
 }
 
-interface Detalles {
-    autor: string;
-    anio: number;
+const telefono: Producto = {
+    desc: 'Nokia A1',
+    precio: 20
 }
 
-const reproductor: Reproductor = {
-    cancion: 'xD',
-    volumen: 90,
-    segundo: 12,
-    detalles: {
-        autor: 'pepe',
-        anio: 2020
-    }
-};
+const calculaImpuestos = (productos: Array<Producto>) => {
+    let total = 0;
 
-const {cancion, volumen, segundo, detalles: {autor, anio}} = reproductor;
-console.log(autor, anio, cancion);
+    productos.forEach((producto: Producto, idx: number, arr) => {
+        total += producto.precio;
+    });
+    return total * 15;
+}
+
+
+const productos = [telefono]
+const isv = calculaImpuestos(productos);
+
+console.log('isv', isv);
